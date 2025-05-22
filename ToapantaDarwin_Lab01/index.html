@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Laboratorio 01</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- template para el componente -->
+    <template id="product-card-template">
+        <style>
+            :host {
+                --primary-color: rgb(0, 155, 13);
+                --border-radius: 12px;
+                display: block;
+                max-width: 400px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                border-radius: var(--border-radius);
+                border: 1px solid var(--primary-color);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                overflow: hidden;
+                background-color: white;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 16px;
+            }
+
+            img {
+                width: 100%;
+                max-height: 250px;
+                object-fit: contain;
+                border-radius: var(--border-radius) var(--border-radius) 0 0;
+                background: #f0f0f0;
+            }
+
+            h2 {
+                margin: 12px 0 6px 0;
+                color: var(--primary-color);
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            p {
+                margin: 6px 0;
+                color: #555;
+                font-size: 1.1rem;
+                text-align: center;
+            }
+
+            button {
+                margin-top: 12px;
+                padding: 10px 20px;
+                background-color: var(--primary-color);
+                border: none;
+                border-radius: 8px;
+                color: white;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #00ff1a;
+                color: black;
+            }
+        </style>
+
+        <div class="container">
+            <img part="image" src="" alt="Imagen del producto" />
+            <h2 part="title">
+                <slot name="title">Producto</slot>
+            </h2>
+            <p part="price">
+                <slot name="price">Precio no disponible</slot>
+            </p>
+            <p part="description">
+                <slot name="description">Descripción del producto</slot>
+            </p>
+            <p part="collection">
+                <slot name="collection"></slot>
+            </p>
+            <button part="button">Añadir al carrito</button>
+        </div>
+    </template>
+</head>
+
+<body>
+    <header>
+        <h1>VENTA DE ZAPATOS</h1>
+        <div id="cart-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" viewBox="0 0 24 24">
+                <path
+                    d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-14.6-2l1.776-9h14.115l-1.614 7.21c-.163.732-.847 1.29-1.601 1.29h-11.676zm1.6-11h2.455l.734 3h7.416l1.156-3h-12.76z" />
+            </svg>
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+    <!-- Usamos el componente y le pasamos atributos -->
+    <main>
+        <product-card img="./img/nike-verde.png" title="Zapato Nike Verde" price="$100.00"
+            description="Zapato Nike de alta calidad" collection="Colección Running"
+            style="--primary-color: rgb(0, 155, 13); --border-radius: 16px;"></product-card>
+
+        <product-card img="./img/nike-negro.png" title="Zapato Nike Negro" price="$95.00"
+            description="Zapato Nike elegante en color negro" collection="Colección Urbana"
+            style="--primary-color: rgb(0, 0, 0); --border-radius: 16px;"></product-card>
+
+        <product-card img="./img/nike-azul.png" title="Zapato Nike Azul" price="$110.00"
+            description="Zapato Nike deportivo en color azul" collection="Colección Running"
+            style="--primary-color: rgb(0, 0, 255); --border-radius: 16px;"></product-card>
+    </main>
+
+
+
+    <script type="module" src="product-card.js"></script>
+</body>
+
+</html>
